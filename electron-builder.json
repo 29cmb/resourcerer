@@ -1,0 +1,15 @@
+{
+    "appId": "xyz.devcmb.resourcerer",
+    "files": ["build", "build-electron"],
+    "icon": "./icon.png",
+    "mac": {
+        "target": "dmg"
+    },
+    "linux": {
+        "target": "AppImage",
+        "category": "Utility"
+    },
+    "win": {
+        "target": ["portable", "msi"]
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "strict": true,
+        "target": "esnext",
+        "module": "nodenext",
+        "outDir": "../../build-electron",
+        "skipLibCheck": true
+    }
+}
