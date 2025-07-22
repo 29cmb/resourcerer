@@ -1,18 +1,23 @@
-import { app, BrowserWindow, ipcMain } from "electron"
+import { app, BrowserWindow, ipcMain, Menu } from "electron"
 import path from "path"
 import { fileURLToPath, pathToFileURL } from "url"
 import { getPreloadScript, isDev } from "./modules/util.js";
 import fs from "fs"
+import { IPCRendererController } from "./Types.js";
+import { FileTemplateElement } from "./modules/menu/file.js";
 
 export let window: BrowserWindow;
-export type IPCRendererController = {
-    name: string,
-    type: "on" | "handle",
-    handle: (...args: unknown[]) => void
-}
-
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
+
+function createMenu() {
+    const template = [
+        FileTemplateElement
+    ]
+
+    const menu = Menu.buildFromTemplate(template)
+    Menu.setApplicationMenu(menu)
+}
 
 function createWindow() {
     window = new BrowserWindow({
@@ -35,6 +40,7 @@ function createWindow() {
 }
 
 app.whenReady().then(() => {
+    createMenu()
     createWindow()
     app.on('activate', function () {
         if (BrowserWindow.getAllWindows().length === 0) createWindow()

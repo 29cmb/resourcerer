@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import './styles/App.css'
 import "./Types.ts"
 
 function App() {
@@ -8,10 +7,9 @@ function App() {
     setVersion(window.electron.getVersion())
   }, [])
 
-  return <>
-    <h1>Hi the version is as follows</h1>
+  return (
     <p>{version}</p>
-  </>
+  )
 }
 
 export default App
