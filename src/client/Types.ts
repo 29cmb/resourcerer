@@ -4,6 +4,7 @@ declare global {
             getVersion: () => Promise<string>;
             onProjectLoad: (callback: (data: ProjectData) => void) => void,
             getFolderContents: (path: string) => Promise<FileStructure[]>;
+            getFileContents: (path: string) => Promise<string>
         };
     }
 }

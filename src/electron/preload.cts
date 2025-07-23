@@ -5,5 +5,6 @@ const { contextBridge, ipcRenderer } = require('electron')
 contextBridge.exposeInMainWorld('electron', {
   getVersion: () => ipcRenderer.invoke("version"),
   onProjectLoad: (callback: (data: ProjectData) => void) => ipcRenderer.on("open-project", (_event: any, data: ProjectData) => callback(data)),
-  getFolderContents: (path: string) => ipcRenderer.invoke("get-folder-contents", path)
+  getFolderContents: (path: string) => ipcRenderer.invoke("get-folder-contents", path),
+  getFileContents: (path: string) => ipcRenderer.invoke("get-file-contents", path)
 })
