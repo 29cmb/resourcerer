@@ -5,6 +5,7 @@ import { getPreloadScript, isDev } from "./modules/util.js";
 import fs from "fs"
 import { IPCRendererController } from "./Types.js";
 import { FileTemplateElement } from "./modules/menu/file.js";
+import { DebugTemplateElement } from "./modules/menu/debug.js";
 
 export let window: BrowserWindow;
 const __filename = fileURLToPath(import.meta.url)
@@ -12,7 +13,8 @@ const __dirname = path.dirname(__filename)
 
 function createMenu() {
     const template = [
-        FileTemplateElement
+        FileTemplateElement,
+        DebugTemplateElement
     ]
 
     const menu = Menu.buildFromTemplate(template)
