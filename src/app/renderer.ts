@@ -26,4 +26,11 @@
  * ```
  */
 
-import "./app/App"
+import { ResourcererElectronAPI } from "../Types"
+import "./App"
+
+declare global {
+    interface Window {
+        electron: ResourcererElectronAPI
+    }
+}
