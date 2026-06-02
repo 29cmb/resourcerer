@@ -74,8 +74,6 @@ export default class DataController {
 
                 folderDefinition.children?.forEach(file => this.createDefinition(file, definitionPath))
                 break
-            default:
-                logger.error(`Unknown file type`)
         }
     }
 }

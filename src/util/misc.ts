@@ -8,5 +8,5 @@ function formatTime(date: Date) {
 }
 
 export default {
-    formatTime
+  formatTime
 }
