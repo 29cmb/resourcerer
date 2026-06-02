@@ -52,6 +52,7 @@ export default class DataController {
                 const fileDefinition = definition as FileDefinition
                 if(!fs.existsSync(definitionPath)) {
                     fs.writeFileSync(definitionPath, fileDefinition.content, { encoding: "utf-8" })
+                    logger.success(`Created missing file ${fileDefinition.name} successfully!`)
                     break
                 }
 
@@ -60,13 +61,15 @@ export default class DataController {
                     logger.error(`File ${fileDefinition.name} is invalid, returning to default.`)
                     fs.writeFileSync(definitionPath, fileDefinition.content, { encoding: "utf-8" })
                 }
-                
+
+                logger.info(`File ${fileDefinition.name} already exists and is valid. Skipping...`)
                 break
             case "folder":
                 const folderDefinition = definition as FolderDefinition
                 
                 if(!fs.existsSync(definitionPath)) {
                     fs.mkdirSync(definitionPath, { recursive: true })
+                    logger.info(`Created missing folder ${folderDefinition.name} successfully`)
                 }
 
                 folderDefinition.children?.forEach(file => this.createDefinition(file, definitionPath))

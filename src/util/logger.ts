@@ -10,7 +10,7 @@ const messages = {
     [LogLevel.PACKAGE_REGISTRATION]: '📦 | %s',
     [LogLevel.WARNING]: '⚠️ | %s',
     [LogLevel.ERROR]: '❌ | %s',
-    [LogLevel.DEBUG]: '🛠️ | %s', // requires an extra space for whatever reason
+    [LogLevel.DEBUG]: '🛠️ | %s',
     [LogLevel.BOOTING]: '🚀 | %s',
     [LogLevel.ASYNC_TASK]: '⏳ | %s',
     [LogLevel.OTHER]: '%s',

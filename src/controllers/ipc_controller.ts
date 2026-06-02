@@ -22,7 +22,7 @@ export default class IPCController {
         this.events.forEach(event => {
             const eventIns = new event()
             ipcMain.on(eventIns.id, eventIns.onEvent)
-            logger.success(`✅ | Registered IPC event ${eventIns.id} successfully`)
+            logger.success(`Registered IPC event ${eventIns.id} successfully`)
         })
     }
 }
