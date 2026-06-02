@@ -1,14 +1,17 @@
 import { app, BrowserWindow } from 'electron';
+import logger from '../util/logger';
 
 export default class ElectronController {
-    private entry: string;
-    private preload: string;
+    private entry: string
+    private preload: string
+    public window!: BrowserWindow
 
     constructor(entry: string, preload: string) {
         this.entry = entry
         this.preload = preload
 
         this.init()
+        logger.packageRegistration("Initialized ElectronController successfully!")
     }
 
     private init() {
@@ -17,8 +20,7 @@ export default class ElectronController {
         }
 
         const createWindow = (): void => {
-            // Create the browser window.
-            const mainWindow = new BrowserWindow({
+            this.window = new BrowserWindow({
                 height: 600,
                 width: 800,
                 webPreferences: {
@@ -26,10 +28,17 @@ export default class ElectronController {
                 },
             });
 
-            mainWindow.loadURL(this.entry);
+            this.window.loadURL(this.entry);
+            logger.success("Electron window loaded successfully")
         };
 
-        app.on('ready', createWindow);
+        app.on('ready', () => {
+            createWindow()
+
+            this.window.on("close", () => {
+                logger.saveLogs()
+            })
+        });
 
         app.on('window-all-closed', () => {
             if (process.platform !== 'darwin') {
